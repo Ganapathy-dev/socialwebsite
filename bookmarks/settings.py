@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,3 +148,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '623963873208-86c27iqi1q0vt8q17tlj4q1s6qia17uf.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Consumer Secret
 
 # THUMBNAIL_DEBUG=True
+
+from django.urls import reverse_lazy
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user':lambda u:reverse_lazy('user_detail',args=[u.username])
+}
+
+
+REDIS_HOST='localhost'
+REDIS_PORT=6379
+REDIS_DB=0
